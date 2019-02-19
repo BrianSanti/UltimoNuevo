@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -157,7 +156,7 @@ public class NMMI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 240, 200, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 200, 40));
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,9 +219,17 @@ public class NMMI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    
         
-        Persona persona;
+        
+     
+        
+        
+        
+        if(!(jTextField1.getText().equals("")||jTextField2.equals("")||jTextField3.equals("")||jTextField4.equals("")||jTextField5.equals("")||jTextField6.equals("")||jTextField7.equals("")||jTextField8.equals("")||jTextField9.equals("")) )
+      {
+       try{
+           
+            Persona persona;
          persona = new Persona(jTextField1.getText(),jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jTextField7.getText(), jTextField8.getText(), jTextField9.getText() );
         lista.add(persona);
         mostrar();
@@ -236,9 +243,71 @@ public class NMMI extends javax.swing.JFrame {
               jTextField7.setText("");
                jTextField8.setText("");
                 jTextField9.setText("");
-              
+
+               }
+        catch(Exception e){
+                  JOptionPane.showMessageDialog(rootPane,"Error al ingresos"+e);
+               
+        }
+       
+      
         
         
+        }else{
+               if(!(jTextField1.getText().matches("[A-Z][a-z]*"))){
+            JOptionPane.showMessageDialog(null, "Nombre incorrecto");
+        }else{
+            
+        }
+        if(!(jTextField2.getText().matches("[A-Z][a-z]*"))){
+            JOptionPane.showMessageDialog(null, "Ingreso Nombre Incorrecto");
+        }else{
+            
+        }
+        if(!(jTextField3.getText().matches("\\d{3}"))){
+            JOptionPane.showMessageDialog(null, "Codigo Incorrecto");
+        }else{
+            
+        }
+        if(!(jTextField4.getText().matches("\\d{6}"))){
+            JOptionPane.showMessageDialog(null, "Comision Incorrecta");
+        }else{
+            
+        }
+        if(!(jTextField5.getText().matches("\\d{6}"))){
+            JOptionPane.showMessageDialog(null, "Bonificacion Incorrecta");
+            
+        }else{
+            
+        }
+        if(!(jTextField6.getText().matches("\\d{6}"))){
+            JOptionPane.showMessageDialog(null, "Ingreso Clave Incorrecto");
+            
+        }else{
+            
+        }
+        if(!(jTextField7.getText().matches("\\d*"))){
+            JOptionPane.showMessageDialog(null, "Dar al boton 'Calcular'");
+            
+        }else{
+            
+        }
+        if(!(jTextField8.getText().matches("\\d*"))){
+            JOptionPane.showMessageDialog(null, "Dar al boton 'Calcular'");
+            
+        }else{
+            
+        }
+        if(!(jTextField9.getText().matches("\\d*"))){
+            JOptionPane.showMessageDialog(null, "Dar al boton 'Sueldo Liquido'");
+            
+        }else{
+            
+        }
+    
+        
+        }
+          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
