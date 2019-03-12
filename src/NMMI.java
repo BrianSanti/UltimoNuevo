@@ -1,4 +1,7 @@
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -248,9 +251,11 @@ public class NMMI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        
-        
      
+        
+        
+        
+        
         jButton4.setVisible(false);
         
         
@@ -267,6 +272,7 @@ public class NMMI extends javax.swing.JFrame {
                 
             
                  lista.add(persona);
+          ingreso1();       
         mostrar();
         
         jTextField1.setText("");
@@ -497,6 +503,40 @@ public class NMMI extends javax.swing.JFrame {
      jTextField8.setText(""+isr41);
      
      }
+    
+    
+    
+    
+    }
+    public void ingreso1(){
+    
+     try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/bd_nomina", "root", "");
+            PreparedStatement pst = cn.prepareStatement("insert into nomina values(nombre,depa,codigo, sueldo,comi, boni,iggs, isr,sliquido)");
+            
+            pst.setString(1, jTextField1.getText().trim());
+            pst.setString(2, TFdep.getText().trim());
+            pst.setString(3, jTextField3.getText().trim());
+            pst.setString(4, jTextField4.getText().trim());
+            pst.setString(5, jTextField5.getText().trim());
+            pst.setString(6, jTextField6.getText().trim());
+            pst.setString(7, jTextField7.getText().trim());
+            pst.setString(8, jTextField8.getText().trim());
+            pst.setString(9, jTextField9.getText().trim());
+            pst.executeUpdate();
+            
+            
+            
+        }catch (Exception e){
+            
+        }
+    
+    
+    
+    
+    
+    
+    
     
     
     
