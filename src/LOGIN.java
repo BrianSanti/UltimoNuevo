@@ -124,34 +124,56 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        try{
-           Connection con=null;
-        PreparedStatement pst =null;
-        ResultSet rs = null;
-    
-        String query = "SELECT * FROM `usuario` WHERE usuario=? and contra=?";
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_nomina?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
-        pst = con.prepareStatement(query);
-        pst.setString(1,jTextField1.getText());
-        pst.setString(2,jTextField2.getText());
-        rs=pst.executeQuery();
-        if(rs.next()){
+//        try{
+//           Connection con=null;
+//        PreparedStatement pst =null;
+//        ResultSet rs = null;
+//    
+//        String query = "SELECT * FROM `usuarios` WHERE codigo_usuario=? and nombre_usuario=?";
+//        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_planilla?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
+//        pst = con.prepareStatement(query);
+//        pst.setString(1,jTextField1.getText());
+//        pst.setString(2,jTextField2.getText());
+//        rs=pst.executeQuery();
+//        if(rs.next()){
+//            
+//            JOptionPane.showMessageDialog(this, "Usuario y Contraseña coincidieron, Bienvenido "+jTextField1.getText());   
+//           
+//              NMMI t = new NMMI();
+//        t.setVisible(rootPaneCheckingEnabled);
+//        }else{
+//        
+//        
+//         JOptionPane.showMessageDialog(this, "Usuario/Contraseña incorrecto ");
+//        
+//        }
+//            
+//        }catch(Exception ex){
+//            
+//     JOptionPane.showMessageDialog(this, ex.getMessage());   
+//    }
+
+ try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/planilla", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from usuarios where ID = codigo_usuario");
+            pst.setString(1, jTextField2.getText().trim());
             
-            JOptionPane.showMessageDialog(this, "Usuario y Contraseña coincidieron, Bienvenido "+jTextField1.getText());   
-           
-              NMMI t = new NMMI();
-        t.setVisible(rootPaneCheckingEnabled);
-        }else{
-        
-        
-         JOptionPane.showMessageDialog(this, "Usuario/Contraseña incorrecto ");
-        
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                jTextField1.setText(rs.getString("Nombre"));
+                jTextField2.setText(rs.getString("Contraseña"));
+                NMMI t = new NMMI();
+                t.setVisible(rootPaneCheckingEnabled);
+                
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingreso satisfactorio");
+            }
+            
+        }catch (Exception e){
+            
         }
-            
-        }catch(Exception ex){
-            
-     JOptionPane.showMessageDialog(this, ex.getMessage());   
-    }
         
      
         

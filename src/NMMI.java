@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -232,6 +233,11 @@ public class NMMI extends javax.swing.JFrame {
                 jComboBox2ItemStateChanged(evt);
             }
         });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 60, 30));
 
         jButton4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -252,7 +258,21 @@ public class NMMI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
      
-        
+         try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/planilla", "root", "");
+            PreparedStatement pst = cn.prepareStatement("insert into empleado values(?,?,?,?,?)");         
+            pst.setString(1, jTextField3.getText().trim());
+            pst.setString(2, jTextField1.getText().trim());
+            pst.setString(3, jTextField9.getText().trim());
+            pst.setString(4, "0"); 
+            pst.setString(5, "1");
+          
+            pst.executeUpdate();
+         
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null,"Hola"+e);
+            
+        }
         
         
         
@@ -459,6 +479,10 @@ public class NMMI extends javax.swing.JFrame {
 //        dialog.pack();
 //        dialog.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
     public void sueldol(){
         
     int depart=Integer.parseInt(departamento());
